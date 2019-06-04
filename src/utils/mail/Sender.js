@@ -1,11 +1,11 @@
 /*
  * A collection of utility methods used to send mail to another user
  */
- import * as blockstack from blockstack;
+ import * as blockstack from 'blockstack';
 
- module.exports = {
+ export class Sender {
    // Sends a message to a single recepient
-   sendMessageTo: function sendMessageTo(message, receiverID) {
+   sendMessageTo(message, receiverID) {
 
      // get the users private key
      blockstack.getFile('pk.txt', {username: receiverID, encrypt:false})
@@ -63,5 +63,5 @@
       .catch(err => {
         console.error(err);
       });
-   },
+   }
  }

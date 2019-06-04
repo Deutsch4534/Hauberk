@@ -2,8 +2,8 @@
  * A collection of utility methods used to pull mail from other users.
  * For all the calls in this page you are the recipient
  */
-import * as blockstack from blockstack;
-const Message = require("../../modles/Messages.js");
+import * as blockstack from 'blockstack';
+import Message from '../../models/Message.js'
 
 function getMessageID(recieverID, senderID) {
     blockstack.getFile(recieverID + "\\outbuox\\messages.json", { username: senderID, decrypt: false }).then(
@@ -14,8 +14,8 @@ function getMessageID(recieverID, senderID) {
     //PARSE ARRAY OF JSON
     return messageIDArray[0];
 };
-module.exports = {
-    getMessage: function getMessage(recieverID, senderID) {
+export class Receiver {
+    getMessage(recieverID, senderID) {
         return getMessageID(recieverID, senderID).then(
             messageID => {
                 return blockstack.getFile(recieverID + "\\outbox\\" + messageID, { username: senderID, decrypt: false }).then(

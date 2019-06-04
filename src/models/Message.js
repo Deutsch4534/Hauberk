@@ -1,4 +1,4 @@
-module.exports = class Message() {
+export class Message {
   constructor(id, title, senderID, receiverID, contents) {
     this.id = id;
     this.title = title;
