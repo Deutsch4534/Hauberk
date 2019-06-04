@@ -4,6 +4,7 @@
  */
 import * as blockstack from blockstack;
 const Message = require("../../modles/Messages.js");
+
 function getMessageID(recieverID, senderID) {
     blockstack.getFile(recieverID + "\\outbuox\\messages.json", { username: senderID, decrypt: false }).then(
         stringifiedArray => {
@@ -14,7 +15,7 @@ function getMessageID(recieverID, senderID) {
     return messageIDArray[0];
 };
 module.exports = {
-    method: function getMessage(recieverID, senderID) {
+    getMessage: function getMessage(recieverID, senderID) {
         return getMessageID(recieverID, senderID).then(
             messageID => {
                 return blockstack.getFile(recieverID + "\\outbox\\" + messageID, { username: senderID, decrypt: false }).then(
@@ -27,4 +28,3 @@ module.exports = {
         );
     }
 };
-
