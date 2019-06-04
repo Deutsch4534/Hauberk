@@ -5,7 +5,7 @@
 
  module.exports = {
    // Sends a message to a single recepient
-   method: function sendMessageTo(message, receiverID) {
+   sendMessageTo: function sendMessageTo(message, receiverID) {
 
      // get the users private key
      blockstack.getFile('pk.txt', {username: receiverID, encrypt:false})
